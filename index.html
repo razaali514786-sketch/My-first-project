@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Tourist Hotel | Luxury Stay</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #101e2d;
+            --gold: #c7a56b;
+            --cream: #f8f6f1;
+            --text: #283444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1160px, 90%);
+            margin: auto;
+        }
+
+        /* Navigation */
+
+        header {
+            background: var(--navy);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav {
+            min-height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+            font-size: 13px;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 22px;
+            background: var(--gold);
+            color: var(--navy);
+            border: 1px solid var(--gold);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 590px;
+            display: flex;
+            align-items: center;
+            color: white;
+            background:
+                linear-gradient(90deg,
+                    rgba(8, 19, 31, 0.88),
+                    rgba(8, 19, 31, 0.25)),
+                url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2000&q=85")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 690px;
+            padding: 90px 0 130px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(42px, 6vw, 76px);
+            font-weight: normal;
+            line-height: 1.1;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            max-width: 510px;
+            color: #e0e3e7;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        /* Booking panel */
+
+        .booking {
+            background: white;
+            box-shadow: 0 12px 35px #18263818;
+            padding: 28px;
+            margin-top: -65px;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr) auto;
+            align-items: end;
+            gap: 20px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid #dedede;
+            background: white;
+            color: var(--text);
+            font: inherit;
+        }
+
+        /* Section headings */
+
+        section {
+            scroll-margin-top: 95px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 45px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            color: var(--navy);
+            font-family: Georgia, serif;
+            font-size: clamp(32px, 4vw, 45px);
+            font-weight: normal;
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            color: #6f7781;
+            margin-top: 14px;
+        }
+
+        /* Rooms */
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        .room-card {
+            background: white;
+            overflow: hidden;
+            box-shadow: 0 8px 25px #1020300c;
+            transition: transform 0.3s;
+        }
+
+        .room-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .room-card img {
+            width: 100%;
+            height: 245px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .room-info {
+            padding: 25px;
+        }
+
+        .room-info h3 {
+            color: var(--navy);
+            font-family: Georgia, serif;
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        .room-info p {
+            color: #747b83;
+            margin: 12px 0 20px;
+            font-size: 14px;
+        }
+
+        .room-bottom {
+            border-top: 1px solid #ece9e2;
+            padding-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .room-bottom strong {
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        .room-bottom a {
+            color: #99743b;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Facilities */
+
+        .facilities {
+            background: var(--navy);
+            color: white;
+        }
+
+        .facilities .section-heading h2 {
+            color: white;
+        }
+
+        .facilities .section-heading p {
+            color: #c0c9d1;
+        }
+
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .facility {
+            border: 1px solid #ffffff25;
+            padding: 30px 18px;
+            text-align: center;
+        }
+
+        .facility .symbol {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .facility h3 {
+            color: var(--gold);
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .facility p {
+            font-size: 13px;
+            color: #c6cdd4;
+        }
+
+        /* About */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-copy h2 {
+            color: var(--navy);
+            font: normal 42px/1.2 Georgia, serif;
+            margin-bottom: 20px;
+        }
+
+        .about-copy p {
+            color: #6f7781;
+            margin-bottom: 18px;
+        }
+
+        /* Contact */
+
+        .contact {
+            background: #eee9df;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact h2 {
+            color: var(--navy);
+            font: normal 38px Georgia, serif;
+            margin-bottom: 18px;
+        }
+
+        .contact-copy p {
+            margin: 12px 0;
+            color: #606b76;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 14px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            font: inherit;
+            border: 1px solid #d7d0c4;
+            background: white;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+
+        footer {
+            background: #0a1521;
+            color: #d1d7dd;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        footer span {
+            color: var(--gold);
+        }
+
+        /* Responsive layout */
+
+        @media (max-width: 850px) {
+            .nav-links {
+                gap: 13px;
+                font-size: 11px;
+            }
+
+            .nav-book {
+                display: none;
+            }
+
+            .booking {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .rooms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .facility-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            nav {
+                min-height: 70px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .nav-links {
+                gap: 12px;
+                font-size: 10px;
+            }
+
+            .nav-links li:nth-child(2),
+            .nav-links li:nth-child(3),
+            .nav-links li:nth-child(4) {
+                display: none;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero-content {
+                padding: 75px 0 100px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .booking {
+                grid-template-columns: 1fr;
+                padding: 22px;
+                margin-top: -45px;
+            }
+
+            .booking .btn {
+                width: 100%;
+            }
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .rooms-grid,
+            .facility-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image img {
+                height: 300px;
+            }
+
+            .about-copy h2,
+            .contact h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">ALI <span>TOURIST</span> HOTEL</a>
+
+            <ul class="nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#rooms">ROOMS</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+
+            <a href="#booking" class="btn nav-book">BOOK YOUR STAY</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="eyebrow">Welcome to Ali Tourist Hotel</div>
+
+                    <h1>Your Escape,<br>Elevated.</h1>
+
+                    <p>
+                        Discover exceptional comfort, thoughtful hospitality,
+                        and memorable stays designed around you.
+                    </p>
+
+                    <a href="#rooms" class="btn">EXPLORE OUR ROOMS &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <form class="booking container" id="booking"
+              onsubmit="event.preventDefault(); alert('Thank you! Please contact our hotel to confirm your reservation.');">
+
+            <div class="field">
+                <label for="checkin">CHECK-IN</label>
+                <input type="date" id="checkin" required>
+            </div>
+
+            <div class="field">
+                <label for="checkout">CHECK-OUT</label>
+                <input type="date" id="checkout" required>
+            </div>
+
+            <div class="field">
+                <label for="guests">GUESTS</label>
+                <select id="guests">
+                    <option>1 Guest</option>
+                    <option selected>2 Guests</option>
+                    <option>3 Guests</option>
+                    <option>4 Guests</option>
+                    <option>5+ Guests</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">CHECK AVAILABILITY</button>
+        </form>
+
+        <section class="section" id="rooms">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">Accommodation</div>
+                    <h2>Stay Somewhere Special</h2>
+                    <p>
+                        Carefully designed spaces where timeless elegance
+                        meets modern comfort.
+                    </p>
+                </div>
+
+                <div class="rooms-grid">
+
+                    <article class="room-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=80"
+                            alt="Elegant deluxe hotel bedroom">
+
+                        <div class="room-info">
+                            <h3>Deluxe Room</h3>
+                            <p>
+                                A peaceful retreat with elegant interiors,
+                                comfortable bedding, and modern essentials.
+                            </p>
+                            <div class="room-bottom">
+                                <strong>Comfort &amp; Style</strong>
+                                <a href="#booking">BOOK NOW &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="room-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=80"
+                            alt="Spacious premium hotel suite">
+
+                        <div class="room-info">
+                            <h3>Executive Suite</h3>
+                            <p>
+                                Spacious interiors and an elevated stay
+                                for guests who appreciate extra comfort.
+                            </p>
+                            <div class="room-bottom">
+                                <strong>Space &amp; Luxury</strong>
+                                <a href="#booking">BOOK NOW &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="room-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=900&q=80"
+                            alt="Beautiful hotel room with a relaxing view">
+
+                        <div class="room-info">
+                            <h3>Premium Retreat</h3>
+                            <p>
+                                Unwind in a refined atmosphere created
+                                for relaxing holidays and special moments.
+                            </p>
+                            <div class="room-bottom">
+                                <strong>Relax &amp; Recharge</strong>
+                                <a href="#booking">BOOK NOW &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section facilities" id="facilities">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">The Experience</div>
+                    <h2>Everything You Need</h2>
+                    <p>
+                        Enjoy thoughtful amenities designed to make
+                        every moment of your stay more comfortable.
+                    </p>
+                </div>
+
+                <div class="facility-grid">
+                    <div class="facility">
+                        <div class="symbol">&#9749;</div>
+                        <h3>Restaurant</h3>
+                        <p>Enjoy delicious meals and refreshing drinks.</p>
+                    </div>
+
+                    <div class="facility">
+                        <div class="symbol">&#9789;</div>
+                        <h3>Relaxation</h3>
+                        <p>Rest easy in calm and comfortable spaces.</p>
+                    </div>
+
+                    <div class="facility">
+                        <div class="symbol">&#9737;</div>
+                        <h3>Room Service</h3>
+                        <p>Convenience and hospitality throughout your stay.</p>
+                    </div>
+
+                    <div class="facility">
+                        <div class="symbol">&#9733;</div>
+                        <h3>Guest Support</h3>
+                        <p>Friendly assistance for your travel needs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="container about-grid">
+                <div class="about-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1100&q=85"
+                        alt="Beautiful hotel architecture and swimming pool">
+                </div>
+
+                <div class="about-copy">
+                    <div class="eyebrow">Our Story</div>
+
+                    <h2>Hospitality That Feels Like Home</h2>
+
+                    <p>
+                        At Ali Tourist Hotel, we believe a great journey
+                        deserves a wonderful place to stay.
+                    </p>
+
+                    <p>
+                        Our vision is to combine welcoming service,
+                        thoughtfully designed spaces, and a relaxing
+                        atmosphere for every traveller.
+                    </p>
+
+                    <a href="#contact" class="btn">GET IN TOUCH &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section contact" id="contact">
+            <div class="container contact-grid">
+
+                <div class="contact-copy">
+                    <div class="eyebrow">Contact Us</div>
+                    <h2>Plan Your Next Stay</h2>
+
+                    <p>
+                        Have a question about your visit?
+                        Send us a message.
+                    </p>
+
+                    <p><strong>Hotel:</strong> Ali Tourist Hotel</p>
+                    <p><strong>Email:</strong> info@alitouristhotel.example</p>
+                    <p><strong>Reservations:</strong> Contact the hotel team</p>
+                </div>
+
+                <form class="contact-form"
+                      onsubmit="event.preventDefault(); alert('Thank you for your message! This demo form is not connected to a server yet.');">
+
+                    <input type="text" placeholder="Your Full Name" required>
+
+                    <input type="email" placeholder="Your Email Address" required>
+
+                    <textarea placeholder="How can we help you?" required></textarea>
+
+                    <button type="submit" class="btn">SEND MESSAGE &rarr;</button>
+                </form>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 <span>Ali Tourist Hotel</span>.
+                Designed with care. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
